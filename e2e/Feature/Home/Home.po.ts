@@ -1,11 +1,15 @@
 import { browser, by, element } from 'protractor';
 
-export class WebRotaPage {
+export class HomePage {
   navigateTo() {
     return browser.get('/');
   }
 
   getParagraphText() {
     return element(by.css('app-root h1')).getText();
+  }
+
+  clickTourOfHeroesLink() {
+    return element(by.id('TourOfHeroes')).click();
   }
 }
