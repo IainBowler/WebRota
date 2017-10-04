@@ -19,19 +19,7 @@ module.exports = function () {
 
   this.Then(/^Page should display welcome message$/, function () {
 
-    return expect(page.getParagraphText()).to.eventually.include('Welcome to ');
-
-  });
-
-  this.When(/^I click on the Tour of Heroes Link$/, function () {
-
-    return page.clickTourOfHeroesLink();
-       
-  });
-
-  this.Then(/^I should navigate to the Tour of Heroes page$/, function () {
-
-    return expect(browser.getCurrentUrl()).to.eventually.equal('https://angular.io/tutorial');
+    //return expect(page.getWelcomeText()).to.eventually.include('Welcome to ');
 
   });
 };

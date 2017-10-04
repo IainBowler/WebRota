@@ -1,9 +1,10 @@
 import { CucumberReportExtension } from "./CucumberReportExtension"
 
-var myHooks = function () {
+var {defineSupportCode} = require('cucumber');
+
+defineSupportCode( ({ registerListener }) => {
 
     var ext = new CucumberReportExtension();
-    this.registerListener(ext.JsonFormatter);
-};
+    registerListener(ext.JsonFormatter);
 
-module.exports = myHooks;
+});

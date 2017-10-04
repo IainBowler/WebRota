@@ -1,0 +1,23 @@
+<nav class="navbar navbar-lightjustify-content-between" style="background-color: #e3f2fd;">
+  <a class="navbar-brand">WebRota</a>
+    <form class="form-inline">
+      <button
+        id="nav.logout"
+        style="margin: 10px"
+        type="button"
+        class="btn btn-primary navbar-btn pull-right"
+        *ngIf="auth.isAuthenticated()"
+        (click)="logout()">
+          Log Out
+      </button>
+      <button
+        id="nav.login"
+        style="margin: 10px"
+        type="button"
+        class="btn btn-primary navbar-btn pull-right"
+        *ngIf="!auth.isAuthenticated()"
+        (click)="auth.login()">
+          Login
+      </button>
+  </form>
+</nav>

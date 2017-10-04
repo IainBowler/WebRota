@@ -4,10 +4,13 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['cucumber-js', 'chai-as-promised', 'chai', 'jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular/cli'],
+// 'cucumber-js', 'chai-as-promised', 'chai', 
     plugins: [
-      require('karma-cucumber-js'),
-      require('chai-as-promised'),
+//      require('karma-cucumber-js'),
+      // require('karma-chai'),
+      // require('karma-chai-as-promised'),
+      // require('chai-as-promised'),
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
@@ -24,10 +27,11 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: ['bdd-json', 'progress', 'kjhtml'],
-    bddJSONReporter: {
-      outputFile: 'results.json' // 'results.json' will be filled with all scenarios test results
-    },
+    reporters: ['progress', 'kjhtml'],
+// 'bdd-json', 
+//    bddJSONReporter: {
+//      outputFile: 'results.json' // 'results.json' will be filled with all scenarios test results
+//    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

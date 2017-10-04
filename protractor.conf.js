@@ -5,6 +5,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
+  ignoreUncaughtExceptions: true,
   specs: [
     './e2e/**/*.feature'
   ],
@@ -30,7 +31,7 @@ exports.config = {
   cucumberOpts: {
     compiler: "ts:ts-node/register",
     strict: true,
-    require: ['./e2e/Feature/**/*.steps.ts', './e2e/*.hooks.ts'],
+    require: ['./e2e/Feature/**/*.steps.ts', './e2e/*.hooks.ts', './e2e/Feature/**/*.hooks.ts'],
     tags: false,
     format: 'pretty'
   }

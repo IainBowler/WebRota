@@ -28,7 +28,7 @@ export class CucumberReportExtension {
 
     constructor () {
 
-        this.JsonFormatter = new Cucumber.Listener.JsonFormatter();
+        this.JsonFormatter = new Cucumber.JsonFormatter();
         this.JsonFormatter.log = (jLog) => {
             this.CreateReportFile(this.jsonDir, this.jsonFile, jLog);
 
