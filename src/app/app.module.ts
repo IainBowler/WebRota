@@ -10,13 +10,19 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { WelcomeComponent } from './welcome/welcome.component'
 import { AuthGuard } from './AuthGuard/authGuard.service';
+import { StartComponent } from './start/start.component';
+import { OrganisationComponent } from './organisation/organisation.component';
+import { MyRotaComponent } from './my-rota/my-rota.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    StartComponent,
+    OrganisationComponent,
+    MyRotaComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -24,6 +30,9 @@ import { AuthGuard } from './AuthGuard/authGuard.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [ AuthGuard ] },
       { path: 'home', component: HomeComponent, canActivate: [ AuthGuard ] },
+      { path: 'Start', component: StartComponent, canActivate: [ AuthGuard ] },
+      { path: 'Organisation', component: OrganisationComponent, canActivate: [ AuthGuard ] },
+      { path: 'MyRota', component: MyRotaComponent, canActivate: [ AuthGuard ] },
       { path: '**', component: WelcomeComponent }
     ]),
     HttpClientModule

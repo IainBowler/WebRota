@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../Auth/auth.service";
-import { User } from "../Data/user";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,40 @@ export class HomeComponent implements OnInit {
 
   profile: any;
 
-  users: User[] = [];
-
-  constructor (private auth: AuthService){
+  constructor (public auth: AuthService, private http: HttpClient, private router: Router){
   }
 
   ngOnInit() {
-    if (this.auth.userProfile) {
+    this.getProfile();
+  }
+
+  private async getProfile() {
+    if(this.auth.userProfile) {
       this.profile = this.auth.userProfile;
-    } else {
-      this.auth.getProfile((err, profile) => {
+      this.checkOwnerOrganisations();
+    }
+    else {
+      await this.auth.getProfile((err, profile) => {
         this.profile = profile;
+        this.checkOwnerOrganisations();
+        console.log(this.profile);
       });
     }
+  }
+
+  private checkOwnerOrganisations() {
+    let url = "http://webrota.iainbowler.com/api/organisations/" + this.profile.sub;
+    console.log("url = " + url);
+    this.http.get(url).subscribe(res => {
+      console.log(res);
+      if(res[0].length > 0)
+        this.router.navigateByUrl('/Organisation');
+      if(res[1].length > 0)
+        this.router.navigateByUrl('/MyRota');
+      if(res[0].length === 0 && res[1].length === 0)
+        this.router.navigateByUrl('/Start');
+      else
+        console.log('false');
+    });
   }
 }
