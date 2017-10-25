@@ -1,9 +1,9 @@
+import { StartPage } from '../Start/Start.po';
 import { browser, by, element } from 'protractor';
 import { expect } from 'chai';
 import { NavBarPage } from "./navBar.po";
 import { AppPage } from "../App/App.po";
 import { AuthHelper } from "./AuthHelper";
-import { HomePage } from "../Home/Home.po";
 
 var {defineSupportCode} = require('cucumber');
 
@@ -16,7 +16,7 @@ defineSupportCode(function({Given, Then, When}) {
 
   var appPage = new AppPage()
   var navBar = new NavBarPage();
-  var homePage = new HomePage();
+  var startPage = new StartPage();
   var authHelper = new AuthHelper();
   
   Given(/^I am not logged on$/, () => {
@@ -47,13 +47,13 @@ defineSupportCode(function({Given, Then, When}) {
 
   });
 
-  Then(/^I should then be directed to users (.*) home page$/, {timeout: 20 * 1000}, (username) => {
+  Then(/^I should then be directed to the Start page$/, {timeout: 20 * 1000}, () => {
 
-    return homePage.checkThisIsUsersHomePage(username);
+    return startPage.onStartPage();
 
   });
 
-  Then(/^I should then be directed logon page$/, () => {
+  Then(/^I should then be directed to the Welcome page$/, () => {
 
     return appPage.checkOnWelcomePage();
 
