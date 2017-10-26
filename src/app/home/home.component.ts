@@ -28,24 +28,21 @@ export class HomeComponent implements OnInit {
       await this.auth.getProfile((err, profile) => {
         this.profile = profile;
         this.checkOwnerOrganisations();
-        console.log(this.profile);
       });
     }
   }
 
   private checkOwnerOrganisations() {
     let url = "http://webrota.iainbowler.com/api/organisations/" + this.profile.sub;
-    console.log("url = " + url);
     this.http.get(url).subscribe(res => {
-      console.log(res);
       if(res[0].length > 0)
         this.router.navigateByUrl('/Organisation');
       if(res[1].length > 0)
         this.router.navigateByUrl('/MyRota');
       if(res[0].length === 0 && res[1].length === 0)
         this.router.navigateByUrl('/Start');
-      else
-        console.log('false');
+      //else
+        //console.log('false');
     });
   }
 }

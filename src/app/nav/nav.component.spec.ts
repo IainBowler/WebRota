@@ -1,28 +1,33 @@
+import { WelcomeComponent } from '../welcome/welcome.component';
+import { AuthGuard } from '../AuthGuard/authGuard.service';
+import { HomeComponent } from '../home/home.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }                               from '@angular/platform-browser';
 
 import { NavComponent } from './nav.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../Auth/auth.service';
 import { APP_BASE_HREF } from '@angular/common';
 import { AuthStubService } from '../Auth/auth.stub.service';
 import { NavPage } from './nav.page';
+
+class RouterStub {
+  navigateByUrl(url: string) { return url; }
+}
 
 describe('NavComponent', () => {
   let component: NavComponent;
   let fixture: ComponentFixture<NavComponent>;
   let page: NavPage;
   let authServiceStub: any;
+  let routerStub: any;
  
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
       declarations: [ NavComponent ],
-      imports: [
-        RouterModule.forRoot([
-        ]),
-      ],
-      providers: [ {provide: AuthService, useClass: AuthStubService }, { provide: APP_BASE_HREF, useValue : '/' } ],      
+      providers: [  {provide: AuthService, useClass: AuthStubService }, 
+                    { provide: Router, useClass: RouterStub } ],      
     })
     .compileComponents();
   }));
@@ -31,6 +36,7 @@ describe('NavComponent', () => {
     fixture = TestBed.createComponent(NavComponent);
     page = new NavPage(fixture);
     authServiceStub = fixture.debugElement.injector.get(AuthService);
+    routerStub = fixture.debugElement.injector.get(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -85,5 +91,15 @@ describe('NavComponent', () => {
     page.getLogoutButton().nativeElement.click();
 
     expect(authServiceStub.logout).toHaveBeenCalled();
+  });  
+
+  it('should navigate to the Welcome page when the Logout button is clicked', () => {
+    authServiceStub.authenticated = true;
+    spyOn(routerStub, 'navigateByUrl');
+    fixture.detectChanges();
+
+    page.getLogoutButton().nativeElement.click();
+
+    expect(routerStub.navigateByUrl).toHaveBeenCalledWith('\Welcome');
   });  
 });

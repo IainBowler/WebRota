@@ -9,11 +9,11 @@ export class NavPage {
     }
 
     getLoginButton(){
-        return this.fixture.debugElement.query(By.css('#nav.login'));
+        return this.fixture.debugElement.query(By.css('#nav-login'));
     }
 
     getLogoutButton(){
-        return this.fixture.debugElement.query(By.css('#nav.logout'));
+        return this.fixture.debugElement.query(By.css('#nav-logout'));
     }
 }
     
