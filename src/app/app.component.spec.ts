@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
+import { WelcomeComponent } from './Components/welcome/welcome.component';
+import { NavComponent } from './Components/nav/nav.component';
+import { HomeComponent } from './Components/home/home.component';
 import { RouterModule } from '@angular/router';
-import { AuthService } from './Auth/auth.service';
+import { AuthService } from './Services/Auth/auth.service';
 import { APP_BASE_HREF } from '@angular/common';
 
 

@@ -5,7 +5,7 @@ import { WelcomeComponent } from "./welcome.component";
 
 export class WelcomePage {
     
-    private welcomeMessage: HTMLElement = this.fixture.debugElement.query(By.css('#welcome-title')).nativeElement
+    private welcomeMessage: HTMLElement = this.fixture.debugElement.query(By.css('#welcome-title')).nativeElement;
     private cucumberReportLink: HTMLElement = this.fixture.debugElement.query(By.css('#welcome-cucumberReportLink')).nativeElement;
 
     constructor(private fixture: ComponentFixture<WelcomeComponent>){

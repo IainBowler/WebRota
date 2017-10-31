@@ -4,9 +4,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WelcomeComponent } from './welcome.component';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../Auth/auth.service';
+import { AuthService } from '../../Services/Auth/auth.service';
 import { APP_BASE_HREF } from '@angular/common';
-import { AuthStubService } from '../Auth/auth.stub.service';
+import { AuthStubService } from '../../Services/Auth/auth.stub.service';
 import { WelcomePage } from './welcome.page';
 
 describe('WelcomeComponent', () => {

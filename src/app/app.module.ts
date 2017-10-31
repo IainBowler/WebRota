@@ -1,3 +1,5 @@
+import { OrganisationsService } from './Services/Organisations/organisations.service';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -5,14 +7,14 @@ import { RouterModule } from '@angular/router'
 import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import { AuthService } from './Auth/auth.service';
-import { HomeComponent } from './home/home.component';
-import { NavComponent } from './nav/nav.component';
-import { WelcomeComponent } from './welcome/welcome.component'
-import { AuthGuard } from './AuthGuard/authGuard.service';
-import { StartComponent } from './start/start.component';
-import { OrganisationComponent } from './organisation/organisation.component';
-import { MyRotaComponent } from './my-rota/my-rota.component';
+import { AuthService } from './Services/Auth/auth.service';
+import { HomeComponent } from './Components/home/home.component';
+import { NavComponent } from './Components/nav/nav.component';
+import { WelcomeComponent } from './Components/welcome/welcome.component'
+import { AuthGuard } from './Services/AuthGuard/authGuard.service';
+import { StartComponent } from './Components/start/start.component';
+import { OrganisationComponent } from './Components/organisation/organisation.component';
+import { MyRotaComponent } from './Components/my-rota/my-rota.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MyRotaComponent } from './my-rota/my-rota.component';
   imports: [
     AlertModule.forRoot(),
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [ AuthGuard ] },
       { path: 'home', component: HomeComponent, canActivate: [ AuthGuard ] },
@@ -37,7 +40,7 @@ import { MyRotaComponent } from './my-rota/my-rota.component';
     ]),
     HttpClientModule
   ],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ AuthService, AuthGuard, OrganisationsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

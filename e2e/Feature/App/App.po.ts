@@ -13,9 +13,9 @@ export class AppPage {
   private authHelper = new AuthHelper();
   private auth0Page = new Auth0Page();
 
-  private welcomeText = element(by.id('welcome.title'));
-  private loginButton = element(by.id('nav.login'));
-  private logoutButton = element(by.id('nav.logout'));
+  private welcomeText = element(by.id('welcome-title'));
+  private loginButton = element(by.id('nav-login'));
+  private logoutButton = element(by.id('nav-logout'));
   
   navigateTo() {
     return browser.get('/');

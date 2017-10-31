@@ -1,0 +1,35 @@
+<h1 id="start-welcomeMessage" align="center">Welcome {{ userName }}</h1>
+<br/>
+<br/>
+<p id="start-text">
+  To get started you must either create a you own new organisation or join an existing organisation.
+</p>
+<p>
+  Join
+</p>
+<p>
+  List of orgs to join:
+  <button class="btn btn-primary">
+    Join
+  </button>
+</p>
+<br/>
+<br/>
+<p>
+  Create a new Organisation
+</p>
+<form action="">
+  <div class="form-group">
+    <input ngModel name="start-organisationName" id="start-organisationName" type="text" 
+    class="form-control startText" placeholder="Organisation Name" required #organisationName="ngModel">
+    <div class="alert alert-danger" *ngIf="organisationName.touched && !organisationName.valid">
+      An Organisation Name is Required
+    </div>
+    <br/>
+    <button class="btn btn-primary" (click)="test()">
+      Create
+    </button>  
+  </div>
+</form>
+<p>
+</p>

@@ -8,7 +8,7 @@ chai.use(chaiAsPromised);
 
 export class StartPage {
 
-  private startText = element(by.id('start.text'));
+  private startText = element(by.id('start-text'));
 
   navigateTo() {
     return browser.get('/Start');

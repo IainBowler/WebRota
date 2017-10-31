@@ -1,14 +1,14 @@
 import { WelcomeComponent } from '../welcome/welcome.component';
-import { AuthGuard } from '../AuthGuard/authGuard.service';
+import { AuthGuard } from '../../Services/AuthGuard/authGuard.service';
 import { HomeComponent } from '../home/home.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }                               from '@angular/platform-browser';
 
 import { NavComponent } from './nav.component';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../Auth/auth.service';
+import { AuthService } from '../../Services/Auth/auth.service';
 import { APP_BASE_HREF } from '@angular/common';
-import { AuthStubService } from '../Auth/auth.stub.service';
+import { AuthStubService } from '../../Services/Auth/auth.stub.service';
 import { NavPage } from './nav.page';
 
 class RouterStub {
