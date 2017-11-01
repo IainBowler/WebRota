@@ -20,13 +20,14 @@
 </p>
 <form action="">
   <div class="form-group">
-    <input ngModel name="start-organisationName" id="start-organisationName" type="text" 
+    <input [(ngModel)]="newOrgName" name="start-organisationName" id="start-organisationName" type="text" 
     class="form-control startText" placeholder="Organisation Name" required #organisationName="ngModel">
+    TODO: remove this: {{newOrgName}}
     <div class="alert alert-danger" *ngIf="organisationName.touched && !organisationName.valid">
       An Organisation Name is Required
     </div>
     <br/>
-    <button class="btn btn-primary" (click)="test()">
+    <button class="btn btn-primary" (click)="create()">
       Create
     </button>  
   </div>

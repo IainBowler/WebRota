@@ -17,36 +17,6 @@ class RouterStub {
   navigateByUrl(url: string) { return url; }
 }
 
-class DataHelper {
-
-  private component: HomeComponent;
-  private orgGetReaquestRecieved: boolean = false;
-  
-  constructor(private httpMock: HttpTestingController,
-              private authServiceStub) {
-  
-  }
-
-  setComponent(component: HomeComponent) {
-    this.component = component;
-  }
-
-  getOrgGetReaquestRecieved(): boolean {
-    return this.orgGetReaquestRecieved;
-  }
-
-  flushData(data: any) {
-    try {
-      let url = "http://webrota.iainbowler.com/api/organisations/" + this.authServiceStub.userProfile.sub;
-      const req = this.httpMock.expectOne(url);
-      req.flush(data);
-      this.orgGetReaquestRecieved = true;
-    }
-    catch (error) {
-      this.orgGetReaquestRecieved = false;
-    }
-  }
-}
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -109,16 +79,16 @@ describe('HomeComponent', () => {
   }));
 
   it('should call organisations api', async(() => {
-    spyOn(orgServiceStub, 'getownerOrganisations').and.returnValue(Observable.of([[], []]));
+    spyOn(orgServiceStub, 'getOwnerOrganisations').and.returnValue(Observable.of([[], []]));
 
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
 
-    expect(orgServiceStub.getownerOrganisations).toHaveBeenCalled();
+    expect(orgServiceStub.getOwnerOrganisations).toHaveBeenCalled();
   }));
 
   it('should call navigate to /Organisations when api returns an organisation user owns', async(() => {
-    spyOn(orgServiceStub, 'getownerOrganisations').and.returnValue(Observable.of([[{"id":1,"name":"New Org","ownerId":"userId","members":[]}], []]));
+    spyOn(orgServiceStub, 'getOwnerOrganisations').and.returnValue(Observable.of([[{"id":1,"name":"New Org","ownerId":"userId","members":[]}], []]));
     spyOn(routerStub, 'navigateByUrl');        
     
     const localFixture = TestBed.createComponent(HomeComponent);
@@ -128,7 +98,7 @@ describe('HomeComponent', () => {
   }));
 
   it('should call navigate to /Organisations when api returns an organisation user owns and an organisation user is a member of', async(() => {
-    spyOn(orgServiceStub, 'getownerOrganisations').and.returnValue(Observable.of([[{"id":1,"name":"New Org","ownerId":"userId","members":[]}], [{"id":2,"name":"Org 12","ownerId":"12","members":[{"id":1,"name":"Iain","userId":"userId"}]}]]));
+    spyOn(orgServiceStub, 'getOwnerOrganisations').and.returnValue(Observable.of([[{"id":1,"name":"New Org","ownerId":"userId","members":[]}], [{"id":2,"name":"Org 12","ownerId":"12","members":[{"id":1,"name":"Iain","userId":"userId"}]}]]));
     spyOn(routerStub, 'navigateByUrl');        
     
     const localFixture = TestBed.createComponent(HomeComponent);
@@ -138,7 +108,7 @@ describe('HomeComponent', () => {
   }));
 
   it('should call navigate to /MyRota when api returns an organisation user is a member of', async(() => {
-    spyOn(orgServiceStub, 'getownerOrganisations').and.returnValue(Observable.of([[], [{"id":2,"name":"Org 12","ownerId":"12","members":[{"id":1,"name":"Iain","userId":"userId"}]}]]));
+    spyOn(orgServiceStub, 'getOwnerOrganisations').and.returnValue(Observable.of([[], [{"id":2,"name":"Org 12","ownerId":"12","members":[{"id":1,"name":"Iain","userId":"userId"}]}]]));
     spyOn(routerStub, 'navigateByUrl');        
     
     const localFixture = TestBed.createComponent(HomeComponent);
@@ -148,7 +118,7 @@ describe('HomeComponent', () => {
   }));
 
   it('should call navigate to /Start when api returns no organisations', async(() => {
-    spyOn(orgServiceStub, 'getownerOrganisations').and.returnValue(Observable.of([[], []]));
+    spyOn(orgServiceStub, 'getOwnerOrganisations').and.returnValue(Observable.of([[], []]));
     spyOn(routerStub, 'navigateByUrl');        
     
     const localFixture = TestBed.createComponent(HomeComponent);

@@ -1,3 +1,5 @@
+import { OrganisationsStubService } from '../../Services/Organisations/organisationsStub.service';
+import { OrganisationsService } from '../../Services/Organisations/organisations.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { AuthStubService } from '../../Services/Auth/auth.stub.service';
@@ -19,7 +21,8 @@ describe('StartComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ StartComponent ],
       imports: [ FormsModule ],
-      providers: [ {provide: AuthService, useValue: authStub }, 
+      providers: [ {provide: AuthService, useValue: authStub },
+                    {provide: OrganisationsService, useClass: OrganisationsStubService }
        ],
     })
     .compileComponents();

@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class OrganisationsStubService implements IOrganisationsService {
 
-    public getownerOrganisations(userId: string) {
+    public getOwnerOrganisations(userId: string) {
         return Observable.from([[1, 2], []]);
     }
 }

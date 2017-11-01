@@ -1,3 +1,5 @@
+import { Organisation } from '../../Data/organisation';
+import { OrganisationsService } from '../../Services/Organisations/organisations.service';
 import { Observable } from 'rxjs/Rx';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,18 +12,19 @@ import { Component, OnInit } from '@angular/core';
 export class StartComponent implements OnInit {
 
   userName: string;
+  newOrgName: string;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private orgService: OrganisationsService) { }
 
   ngOnInit() {
     this.userName = this.auth.userProfile.name;
   }
 
-  test() {
-    let testObs = Observable.of([[{name: 'test'}], []]);
-    testObs.subscribe(res => {
-      console.log(res);
-    });
-    console.log('test');
+  create() {
+    let org = new Organisation()
+    org.name = this.newOrgName;
+    org.ownerId = this.auth.userProfile.sub;
+
+    this.orgService.create(org).subscribe();
   }
 }

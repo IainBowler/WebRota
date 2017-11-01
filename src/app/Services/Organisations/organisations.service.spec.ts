@@ -1,8 +1,10 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Organisation } from '../../Data/organisation';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OrganisationsService } from './organisations.service';
 
+  
 describe('OrganisationsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,5 +18,35 @@ describe('OrganisationsService', () => {
 
   it('should be created', inject([OrganisationsService], (service: OrganisationsService) => {
     expect(service).toBeTruthy();
+  }));
+
+  it('should retrieve data when getOwnerOrganisations is called', inject([OrganisationsService, HttpTestingController], 
+                                    (service: OrganisationsService, httpMock: HttpTestingController) => {
+    let org = new Organisation();
+    let userId = 'userId';
+    org.name = 'Test';
+    let result: any;
+                                      
+    service.getOwnerOrganisations(userId).subscribe(res => {
+      result = res;
+    });
+    
+    const req = httpMock.expectOne(service.apiEndPoint + userId);
+    req.flush(org);
+    expect(result).toEqual(org)
+    httpMock.verify();
+  }));
+
+  it('should send data when create is called', inject([OrganisationsService, HttpTestingController], 
+                    (service: OrganisationsService, httpMock: HttpTestingController) => {
+    let org = new Organisation();
+    org.name = 'Test';
+    org.ownerId = 'userId';
+          
+    service.create(org).subscribe();
+
+    const req = httpMock.expectOne(service.apiEndPoint);
+    req.flush(org);
+    httpMock.verify();
   }));
 });

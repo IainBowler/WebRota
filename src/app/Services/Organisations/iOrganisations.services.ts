@@ -1,6 +1,6 @@
 
 export interface IOrganisationsService {
     
-    getownerOrganisations(userId: string);
+    getOwnerOrganisations(userId: string);
     
 }
