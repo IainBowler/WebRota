@@ -31,7 +31,7 @@ describe('OrganisationsService', () => {
       result = res;
     });
     
-    const req = httpMock.expectOne(service.apiEndPoint + userId);
+    const req = httpMock.expectOne(service.userOrganisationsApiEndPoint + userId);
     req.flush(org);
     expect(result).toEqual(org)
     httpMock.verify();
@@ -45,7 +45,7 @@ describe('OrganisationsService', () => {
           
     service.create(org).subscribe();
 
-    const req = httpMock.expectOne(service.apiEndPoint);
+    const req = httpMock.expectOne(service.organisationsApiEndPoint);
     req.flush(org);
     httpMock.verify();
   }));
