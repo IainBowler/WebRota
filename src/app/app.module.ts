@@ -34,7 +34,7 @@ import { MyRotaComponent } from './Components/my-rota/my-rota.component';
       { path: '', component: HomeComponent, canActivate: [ AuthGuard ] },
       { path: 'home', component: HomeComponent, canActivate: [ AuthGuard ] },
       { path: 'Start', component: StartComponent, canActivate: [ AuthGuard ] },
-      { path: 'Organisation', component: OrganisationComponent, canActivate: [ AuthGuard ] },
+      { path: 'Organisation/:id', component: OrganisationComponent, canActivate: [ AuthGuard ] },
       { path: 'MyRota', component: MyRotaComponent, canActivate: [ AuthGuard ] },
       { path: '**', component: WelcomeComponent }
     ]),

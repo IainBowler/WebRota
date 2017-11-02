@@ -49,4 +49,21 @@ describe('OrganisationsService', () => {
     req.flush(org);
     httpMock.verify();
   }));
+
+  it('should retrieve data when get is called', inject([OrganisationsService, HttpTestingController], 
+                      (service: OrganisationsService, httpMock: HttpTestingController) => {
+    let org = new Organisation();
+    let orgId = 1;
+    org.name = 'Test';
+    let result: any;
+          
+    service.get(orgId).subscribe(res => {
+    result = res;
+    });
+
+    const req = httpMock.expectOne(service.organisationsApiEndPoint + orgId.toString());
+    req.flush(org);
+    expect(result).toEqual(org)
+    httpMock.verify();
+  }));
 });

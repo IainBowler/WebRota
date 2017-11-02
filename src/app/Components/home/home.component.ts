@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
     this.orgService.getOwnerOrganisations(this.profile.sub).subscribe((ownerOrgs) => {
       if(ownerOrgs != null && ownerOrgs[0] != null && ownerOrgs[0].length > 0)
-        this.router.navigateByUrl('/Organisation');
+        this.router.navigateByUrl('/Organisation/' + ownerOrgs[0][0].id);
       if(ownerOrgs != null && ownerOrgs[1] != null && ownerOrgs[1].length > 0)
         this.router.navigateByUrl('/MyRota');
       if(ownerOrgs != null && ownerOrgs[0] != null && ownerOrgs[1] != null && ownerOrgs[0].length === 0 && ownerOrgs[1].length === 0)
