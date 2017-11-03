@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class OrganisationsService {
+export class OrganisationsService implements IOrganisationsService {
 
   private _organisationsApiEndPoint: string = "http://webrota.iainbowler.com/api/organisations/";
   get organisationsApiEndPoint(): string { return this._organisationsApiEndPoint; };
@@ -28,4 +28,8 @@ export class OrganisationsService {
     let url = this._organisationsApiEndPoint + orgId.toString();
     return this.http.get<Organisation>(url);
   }  
+
+  getAll(): Observable<Organisation> {
+    return this.http.get<Organisation>(this._organisationsApiEndPoint);
+  }
 }

@@ -17,4 +17,8 @@ export class OrganisationsStubService implements IOrganisationsService {
     public get(orgId: number): Observable<Organisation> {
         return Observable.of(new Organisation());
     }
+
+    public getAll(): Observable<Organisation> {
+        return Observable.of(new Organisation(), new Organisation());
+    }
 }

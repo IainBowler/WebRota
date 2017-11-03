@@ -8,4 +8,6 @@ export interface IOrganisationsService {
     create(organisation: Organisation): Observable<Organisation>;
 
     get(orgId: number): Observable<Organisation>;    
+
+    getAll(): Observable<Organisation>;    
 }

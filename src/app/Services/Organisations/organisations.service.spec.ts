@@ -54,6 +54,7 @@ describe('OrganisationsService', () => {
                       (service: OrganisationsService, httpMock: HttpTestingController) => {
     let org = new Organisation();
     let orgId = 1;
+    org.Id = orgId;
     org.name = 'Test';
     let result: any;
           
@@ -64,6 +65,27 @@ describe('OrganisationsService', () => {
     const req = httpMock.expectOne(service.organisationsApiEndPoint + orgId.toString());
     req.flush(org);
     expect(result).toEqual(org)
+    httpMock.verify();
+  }));
+
+  it('should retrieve data when getAll is called', inject([OrganisationsService, HttpTestingController], 
+        (service: OrganisationsService, httpMock: HttpTestingController) => {
+    let org1 = new Organisation();
+    org1.Id = 1;
+    org1.name = 'Test';
+    let org2 = new Organisation();
+    org2.Id = 2;
+    org2.name = 'Test';
+    let orgList = [org1, org2];
+    let result: any;
+
+    service.getAll().subscribe((res) => {
+      result = res;
+    });
+
+    const req = httpMock.expectOne(service.organisationsApiEndPoint);
+    req.flush(orgList);
+    expect(result).toEqual(orgList)
     httpMock.verify();
   }));
 });
