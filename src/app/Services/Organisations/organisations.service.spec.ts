@@ -54,7 +54,7 @@ describe('OrganisationsService', () => {
                       (service: OrganisationsService, httpMock: HttpTestingController) => {
     let org = new Organisation();
     let orgId = 1;
-    org.Id = orgId;
+    org.id = orgId;
     org.name = 'Test';
     let result: any;
           
@@ -71,10 +71,10 @@ describe('OrganisationsService', () => {
   it('should retrieve data when getAll is called', inject([OrganisationsService, HttpTestingController], 
         (service: OrganisationsService, httpMock: HttpTestingController) => {
     let org1 = new Organisation();
-    org1.Id = 1;
+    org1.id = 1;
     org1.name = 'Test';
     let org2 = new Organisation();
-    org2.Id = 2;
+    org2.id = 2;
     org2.name = 'Test';
     let orgList = [org1, org2];
     let result: any;

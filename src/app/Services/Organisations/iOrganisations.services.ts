@@ -1,3 +1,5 @@
+import { Member } from '../../Data/member';
+import { AddMember } from '../../Data/Resources/addMember';
 import { Observable } from 'rxjs/Rx';
 import { Organisation } from '../../Data/organisation';
 
@@ -9,5 +11,8 @@ export interface IOrganisationsService {
 
     get(orgId: number): Observable<Organisation>;    
 
-    getAll(): Observable<Organisation>;    
+    getAll(): Observable<Organisation[]>;
+
+    addMember(addMember: AddMember): Observable<Member>;
+    
 }

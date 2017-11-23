@@ -2,6 +2,8 @@ import { Organisation } from '../../Data/organisation';
 import { Observable } from 'rxjs/Rx';
 import { IOrganisationsService } from './iOrganisations.services';
 import { Injectable } from "@angular/core";
+import { AddMember } from '../../Data/Resources/addMember';
+import { Member } from '../../Data/member';
 
 @Injectable()
 export class OrganisationsStubService implements IOrganisationsService {
@@ -18,7 +20,11 @@ export class OrganisationsStubService implements IOrganisationsService {
         return Observable.of(new Organisation());
     }
 
-    public getAll(): Observable<Organisation> {
-        return Observable.of(new Organisation(), new Organisation());
+    public getAll(): Observable<Organisation[]> {
+        return Observable.of([new Organisation(), new Organisation()]);
+    }
+
+    public addMember(AddMember): Observable<Member> {
+        return Observable.of(new Member());
     }
 }

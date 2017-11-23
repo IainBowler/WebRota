@@ -1,3 +1,5 @@
+import { AddMember } from '../../Data/Resources/addMember';
+import { Member } from '../../Data/member';
 import { Observable } from 'rxjs/Rx';
 import { Organisation } from '../../Data/organisation';
 import { IOrganisationsService } from './iOrganisations.services';
@@ -11,6 +13,8 @@ export class OrganisationsService implements IOrganisationsService {
   get organisationsApiEndPoint(): string { return this._organisationsApiEndPoint; };
   private _userOrganisationsApiEndPoint: string = "http://webrota.iainbowler.com/api/userorganisations/";
   get userOrganisationsApiEndPoint(): string { return this._userOrganisationsApiEndPoint; };
+  private _membersApiEndPoint: string = "http://webrota.iainbowler.com/api/members/";
+  get membersApiEndPoint(): string { return this._membersApiEndPoint; };
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +33,11 @@ export class OrganisationsService implements IOrganisationsService {
     return this.http.get<Organisation>(url);
   }  
 
-  getAll(): Observable<Organisation> {
-    return this.http.get<Organisation>(this._organisationsApiEndPoint);
+  getAll(): Observable<Organisation[]> {
+    return this.http.get<Organisation[]>(this._organisationsApiEndPoint);
+  }
+
+  addMember(addMember: AddMember): Observable<Member> {
+    return this.http.post<Member>(this.membersApiEndPoint, addMember);    
   }
 }

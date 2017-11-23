@@ -1,6 +1,6 @@
 export class Member {
     
-  Id: number;
+  id: number;
   name: string;
   userId: string;
 

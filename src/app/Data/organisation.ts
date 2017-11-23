@@ -2,9 +2,9 @@ import { Member } from './member';
 
 export class Organisation {
     
-  Id: number;
+  id: number;
   name: string;
   ownerId: string;
-  Members: Array<Member> = new Array<Member>();
+  members: Array<Member> = new Array<Member>();
 
 }
