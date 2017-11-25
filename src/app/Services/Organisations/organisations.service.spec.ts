@@ -22,9 +22,8 @@ describe('OrganisationsService', () => {
 
   it('should retrieve data when getOwnerOrganisations is called', inject([OrganisationsService, HttpTestingController], 
                                     (service: OrganisationsService, httpMock: HttpTestingController) => {
-    let org = new Organisation();
+    let org = new Organisation('Test');
     let userId = 'userId';
-    org.name = 'Test';
     let result: any;
                                       
     service.getOwnerOrganisations(userId).subscribe(res => {
@@ -39,9 +38,7 @@ describe('OrganisationsService', () => {
 
   it('should send data when create is called', inject([OrganisationsService, HttpTestingController], 
                     (service: OrganisationsService, httpMock: HttpTestingController) => {
-    let org = new Organisation();
-    org.name = 'Test';
-    org.ownerId = 'userId';
+    let org = new Organisation('Test', 'userId');
           
     service.create(org).subscribe();
 
@@ -52,10 +49,8 @@ describe('OrganisationsService', () => {
 
   it('should retrieve data when get is called', inject([OrganisationsService, HttpTestingController], 
                       (service: OrganisationsService, httpMock: HttpTestingController) => {
-    let org = new Organisation();
     let orgId = 1;
-    org.id = orgId;
-    org.name = 'Test';
+    let org = new Organisation('Test', '', [], orgId);
     let result: any;
           
     service.get(orgId).subscribe(res => {
@@ -70,12 +65,8 @@ describe('OrganisationsService', () => {
 
   it('should retrieve data when getAll is called', inject([OrganisationsService, HttpTestingController], 
         (service: OrganisationsService, httpMock: HttpTestingController) => {
-    let org1 = new Organisation();
-    org1.id = 1;
-    org1.name = 'Test';
-    let org2 = new Organisation();
-    org2.id = 2;
-    org2.name = 'Test';
+    let org1 = new Organisation('Org 1', '12', [], 1);
+    let org2 = new Organisation('Org 2', '123', [], 2);
     let orgList = [org1, org2];
     let result: any;
 

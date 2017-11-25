@@ -29,9 +29,7 @@ export class StartComponent implements OnInit {
   }
 
   create() {
-    let org = new Organisation()
-    org.name = this.newOrgName;
-    org.ownerId = this.auth.userProfile.sub;
+    let org = new Organisation(this.newOrgName, this.auth.userProfile.sub)
 
     this.orgService.create(org).subscribe();
   }

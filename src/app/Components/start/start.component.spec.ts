@@ -79,9 +79,7 @@ describe('StartComponent', () => {
   }));
 
   it('should call create on orgService when an Organisation name is typed in and the create button clicked', fakeAsync(() => {
-    let newOrg = new Organisation();
-    newOrg.name = "New Org";
-    newOrg.ownerId = authServiceStub.userProfile.sub;
+    let newOrg = new Organisation("New Org", authServiceStub.userProfile.sub);
     spyOn(orgServiceStub, 'create').and.callThrough();
     const fixture = TestBed.createComponent(StartComponent);
     component = fixture.componentInstance;
@@ -99,10 +97,7 @@ describe('StartComponent', () => {
   }));  
 
   it('should call join on orgService when an Organisation is selected and the join button clicked', () => {
-    let org = new Organisation();
-    org.id = 1;
-    org.name = "New Org";
-    org.ownerId = "1234";
+    let org = new Organisation("New Org", "1234", [], 1);
     let addMember = new AddMember();
     addMember.name = authServiceStub.userProfile.name;
     addMember.userId = authServiceStub.userProfile.sub;

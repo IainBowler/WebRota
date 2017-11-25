@@ -40,8 +40,7 @@ describe('OrganisationComponent', () => {
 
   it('should display Organisation Name in the title', () => {
     let orgService = TestBed.get(OrganisationsService);
-    let org = new Organisation();
-    org.name = 'Test Org';
+    let org = new Organisation('Test Org');
     spyOn(orgService, 'get').and.returnValue(Observable.of(org));
     fixture = TestBed.createComponent(OrganisationComponent);
     component = fixture.componentInstance;
