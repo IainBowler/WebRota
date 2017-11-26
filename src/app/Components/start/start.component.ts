@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['../../../../node_modules/bootstrap/dist/css/bootstrap.min.css', './start.component.css']
+  styleUrls: ['./start.component.css']
 })
 
 export class StartComponent implements OnInit {

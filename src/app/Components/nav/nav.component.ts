@@ -5,8 +5,7 @@ import { AuthService } from "../../Services/Auth/auth.service";
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['../../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-  './nav.component.css']
+  styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
 

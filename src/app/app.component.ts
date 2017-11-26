@@ -5,8 +5,7 @@ import { AuthService } from './Services/Auth/auth.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-  './app.component.css']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'app';
