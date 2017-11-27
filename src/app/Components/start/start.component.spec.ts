@@ -98,10 +98,7 @@ describe('StartComponent', () => {
 
   it('should call join on orgService when an Organisation is selected and the join button clicked', () => {
     let org = new Organisation("New Org", "1234", [], 1);
-    let addMember = new AddMember();
-    addMember.name = authServiceStub.userProfile.name;
-    addMember.userId = authServiceStub.userProfile.sub;
-    addMember.organisationId = org.id;
+    let addMember = new AddMember(authServiceStub.userProfile.name, authServiceStub.userProfile.sub, org.id);
     spyOn(orgServiceStub, 'getAll').and.returnValue(Observable.of([org]));
     spyOn(orgServiceStub, 'addMember').and.callThrough();
     const fixture = TestBed.createComponent(StartComponent);

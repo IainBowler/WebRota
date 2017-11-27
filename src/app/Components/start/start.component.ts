@@ -35,10 +35,9 @@ export class StartComponent implements OnInit {
   }
 
   join() {
-    let addMember = new AddMember();
-    addMember.name = this.auth.userProfile.name;
-    addMember.userId = this.auth.userProfile.sub;
-    addMember.organisationId = this.joinOrg.id;
+    let addMember = new AddMember(this.auth.userProfile.name,
+                                    this.auth.userProfile.sub,
+                                    this.joinOrg.id);
 
     this.orgService.addMember(addMember).subscribe();
   }
