@@ -1,0 +1,40 @@
+<br/>
+<form>
+  <h4>
+    Create a new Organisation
+  </h4>
+  <br/>
+  <div class="container">
+    <div class="row align-items-center">
+      <label class="col-sm-3" style="max-width: 100px">Name:
+      </label>
+      <input class="form-control col-sm-9" style="max-width: 300px" [formControl]="newOrgName"
+        placeholder="Organisation Name" id="create-organisation-organisationName">
+    </div>
+    <div class="row alert alert-danger" *ngIf="newOrgName.touched && !newOrgName.valid">
+      An Organisation Name is Required
+    </div>
+    <br/>
+    <div class="row">
+      <button class="btn btn-primary" type="button" id="start-createButton" (click)="create()"
+        id="create-organisation-createButton">
+        Create
+      </button>  
+    </div>
+  </div>
+  
+</form>
+
+{{newOrgName.value}}
+
+<!--<div class="form-group">
+  <input [(ngModel)]="newOrgName" name="start-organisationName" id="start-organisationName" type="text" 
+    class="form-control startText" placeholder="Organisation Name" required #organisationName="ngModel">
+  <div class="alert alert-danger" *ngIf="organisationName.touched && !organisationName.valid">
+    An Organisation Name is Required
+  </div> 
+  <br/>
+  <button class="btn btn-primary" type="button" id="start-createButton" (click)="create()">
+    Create
+  </button>  
+</div>-->
