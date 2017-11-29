@@ -24,7 +24,7 @@ describe('StartComponent', () => {
   beforeEach(async(() => {
 
     authServiceStub = new AuthStubService();
-    authServiceStub.userProfile = { name: "Bob", sub: "12"};  
+    authServiceStub.userProfile = { name: 'Bob', sub: '12'};
 
     TestBed.configureTestingModule({
       declarations: [ StartComponent ],
@@ -49,25 +49,25 @@ describe('StartComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should welcome the user', () => {
-    let el = fixture.debugElement.query(By.css('#start-welcomeMessage')).nativeElement;
+    const el = fixture.debugElement.query(By.css('#start-welcomeMessage')).nativeElement;
     expect(el.textContent).toContain('Welcome ' + authServiceStub.userProfile.name);
   });
 
   it('should call getAll of the organisations api', async(() => {
     spyOn(orgServiceStub, 'getAll').and.returnValue(Observable.of([]));
 
-    const fixture = TestBed.createComponent(StartComponent);
+    fixture = TestBed.createComponent(StartComponent);
     fixture.detectChanges();
 
     expect(orgServiceStub.getAll).toHaveBeenCalled();
   }));
 
   it('should populate the organisations array with retrived data from getAll', async(() => {
-    spyOn(orgServiceStub, 'getAll').and.returnValue(Observable.of([{"id": 1, "name": "New Org", "ownerId": "1234", "members": []}]));
-    
-    const fixture = TestBed.createComponent(StartComponent);
+    spyOn(orgServiceStub, 'getAll').and.returnValue(Observable.of([{'id': 1, 'name': 'New Org', 'ownerId': '1234', 'members': []}]));
+
+    fixture = TestBed.createComponent(StartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -79,39 +79,39 @@ describe('StartComponent', () => {
   }));
 
   it('should call create on orgService when an Organisation name is typed in and the create button clicked', fakeAsync(() => {
-    let newOrg = new Organisation("New Org", authServiceStub.userProfile.sub);
+    const newOrg = new Organisation('New Org', authServiceStub.userProfile.sub);
     spyOn(orgServiceStub, 'create').and.callThrough();
-    const fixture = TestBed.createComponent(StartComponent);
+    fixture = TestBed.createComponent(StartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     page = new StartPage(fixture);
 
-    let newOrgNameTB: HTMLInputElement = page.getNewOrganisationNameTextBox().nativeElement;
+    const newOrgNameTB: HTMLInputElement = page.getNewOrganisationNameTextBox().nativeElement;
     newOrgNameTB.value = newOrg.name;
     newOrgNameTB.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
     page.getCreateButton().nativeElement.click();
-    
-    expect(orgServiceStub.create).toHaveBeenCalledWith(newOrg);  
-  }));  
+
+    expect(orgServiceStub.create).toHaveBeenCalledWith(newOrg);
+  }));
 
   it('should call join on orgService when an Organisation is selected and the join button clicked', () => {
-    let org = new Organisation("New Org", "1234", [], 1);
-    let addMember = new AddMember(authServiceStub.userProfile.name, authServiceStub.userProfile.sub, org.id);
+    const org = new Organisation('New Org', '1234', [], 1);
+    const addMember = new AddMember(authServiceStub.userProfile.name, authServiceStub.userProfile.sub, org.id);
     spyOn(orgServiceStub, 'getAll').and.returnValue(Observable.of([org]));
     spyOn(orgServiceStub, 'addMember').and.callThrough();
-    const fixture = TestBed.createComponent(StartComponent);
+    fixture = TestBed.createComponent(StartComponent);
     component = fixture.componentInstance;
     page = new StartPage(fixture);
     fixture.detectChanges();
-    let orgList = page.getOrganisationsList().nativeElement;
+    const orgList = page.getOrganisationsList().nativeElement;
 
-    orgList.value = "0: Object";
+    orgList.value = '0: Object';
     orgList.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     page.getJoinButton().nativeElement.click();
-    
-    expect(orgServiceStub.addMember).toHaveBeenCalledWith(addMember);      
-  });  
+
+    expect(orgServiceStub.addMember).toHaveBeenCalledWith(addMember);
+  });
 });
