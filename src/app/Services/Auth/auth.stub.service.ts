@@ -1,5 +1,5 @@
-import { IAuthService } from "./iauth.service";
-import { Injectable } from "@angular/core";
+import { IAuthService } from './iauth.service';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthStubService implements IAuthService {
@@ -10,18 +10,19 @@ export class AuthStubService implements IAuthService {
 
     login(): void {
     }
-    
+
     handleAuthentication(): void {
     }
-    
+
     logout(): void {
     }
-    
+
     isAuthenticated(): boolean {
         return this.authenticated;
     }
-    
+
     getProfile(cb: any): void {
+        cb();
     }
 
 }
