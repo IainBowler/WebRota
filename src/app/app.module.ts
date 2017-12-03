@@ -3,19 +3,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
 import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './Services/Auth/auth.service';
 import { HomeComponent } from './Components/home/home.component';
 import { NavComponent } from './Components/nav/nav.component';
-import { WelcomeComponent } from './Components/welcome/welcome.component'
+import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { AuthGuard } from './Services/AuthGuard/authGuard.service';
 import { StartComponent } from './Components/start/start.component';
 import { OrganisationComponent } from './Components/organisation/organisation.component';
 import { MyRotaComponent } from './Components/my-rota/my-rota.component';
 import { CreateOrganisationComponent } from './Components/create-organisation/create-organisation.component';
+import { JoinOrganisationComponent } from './Components/join-organisation/join-organisation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CreateOrganisationComponent } from './Components/create-organisation/cr
     StartComponent,
     OrganisationComponent,
     MyRotaComponent,
-    CreateOrganisationComponent
+    CreateOrganisationComponent,
+    JoinOrganisationComponent
   ],
   imports: [
     AlertModule.forRoot(),

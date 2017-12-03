@@ -1,0 +1,24 @@
+<form>
+  <h4>
+    Join an Organisation
+  </h4>
+  <br/>
+  <div class="container">
+    <div class="row align-items-center">
+      <label class="col-sm-4" style="max-width: 200px">Organisation to join:
+      </label>
+      <select class="form-control col-sm-8" id="join-organisation-orgList" style="max-width: 300px" [formControl]="joinOrg">
+        <option *ngFor="let org of organisations" [ngValue]="org">{{org.name}}</option>
+      </select>
+    </div>
+    <div class="row alert alert-danger" *ngIf="joinOrg.touched && !joinOrg.valid">
+      You must select an organisation in order to join it.
+    </div>
+    <br/>
+    <div class="row">
+      <button class="btn btn-primary" type="button" id="join-organisation-joinButton" (click)="join()">
+        Join
+      </button>  
+    </div>
+  </div>
+</form>
