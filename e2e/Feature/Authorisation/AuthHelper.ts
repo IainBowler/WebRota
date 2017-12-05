@@ -1,8 +1,8 @@
 import { browser, by, element } from 'protractor';
 
-import { AuthService } from "../../../src/app/Auth/auth.service";
-import { User2Service } from "./userManagement.service";
-import { User } from "../../../src/app/Data/user";
+import { AuthService } from '../../../src/app/Services/Auth/auth.service';
+import { User2Service } from './userManagement.service';
+import { User } from '../../../src/app/Data/user';
 
 export class AuthHelper {
 
@@ -18,11 +18,11 @@ export class AuthHelper {
         this.userManagement.getAllUsers().then((users) => {
             let user: User = new User('', '');
             users.forEach(arrayuser => {
-                if(arrayuser.email === email) {
+                if (arrayuser.email === email) {
                     user = arrayuser;
                 }
             });
-            if(user.userId === '') {
+            if (user.userId === '') {
                 this.userManagement.createUser(email, password);
             }
         });
@@ -32,12 +32,12 @@ export class AuthHelper {
         this.userManagement.getAllUsers().then((users) => {
             let user: User = new User('', '');
             users.forEach(arrayuser => {
-                if(arrayuser.email === email) {
+                if (arrayuser.email === email) {
                     user = arrayuser;
                 }
             });
-            if(user.userId !== '') {
-                this.userManagement.deleteUser(user.userId);                
+            if (user.userId !== '') {
+                this.userManagement.deleteUser(user.userId);
             }
         });
     }
