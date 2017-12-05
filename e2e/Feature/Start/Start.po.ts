@@ -1,8 +1,8 @@
 import { browser, by, element } from 'protractor';
 import { expect } from 'chai';
 
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
@@ -15,6 +15,10 @@ export class StartPage {
   }
 
   onStartPage() {
-    return expect(this.startText.getText()).to.eventually.equal('start works!');
+    return expect(browser.getCurrentUrl()).to.eventually.contain('/Start');
+  }
+
+  containsPromptToCreateOrJoin() {
+    return expect(this.startText.getText()).to.eventually.contain('create a new organisation or join');
   }
 }

@@ -1,24 +1,26 @@
 import { browser, by, element } from 'protractor';
 import { expect } from 'chai';
+import { StartPage } from './Start.po';
 
-var {defineSupportCode} = require('cucumber');
+const {defineSupportCode} = require('cucumber');
 
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
 defineSupportCode(function({Given, Then, When}) {
 
-  Given(/^I am not the owner or part of an organisation$/, () => {
-    //Don't have to do anything.
-    return true;
-    
-  });
-    
-  Then(/^I should be prompted to join or create an organisation$/, () => {
+  const startPage = new StartPage();
 
-    return Promise.resolve('pending');
+  Given(/^I am not the owner or part of an organisation$/, () => {
+    // Don't have to do anything.
+    return true;
+  });
+
+  Then(/^I should be prompted to join or create an organisation$/, {timeout: 20 * 1000}, () => {
+
+    return startPage.containsPromptToCreateOrJoin();
 
   });
 });
