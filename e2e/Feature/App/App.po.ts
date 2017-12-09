@@ -27,7 +27,7 @@ export class AppPage {
 
   LogoutLogin(email:string, password:string) {
     this.authHelper.logout();
-    this.Login(email, password);
+    return this.Login(email, password);
   }
 
   Register(email:string, password:string) {
@@ -63,7 +63,7 @@ export class AppPage {
 
     this.auth0Page.SubmitButton.click();
 
-    this.allowApp();    
+    return this.allowApp();    
   }
 
   private addUserNameAndPassword(email:string, password:string) {
@@ -96,6 +96,6 @@ export class AppPage {
       }
     });
     
-    browser.sleep(2000);
+    return browser.sleep(2000);
   }
 }

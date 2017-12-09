@@ -13,6 +13,7 @@ export class MyRotaPage {
   }
 
   onPage() {
+    browser.driver.sleep(2000);
     return expect(browser.getCurrentUrl()).to.eventually.contain('/MyRota');
   }
 }

@@ -7,14 +7,14 @@ Scenario: Start page should prompt user to join or create a new
     Given I am not the owner or part of an organisation
     Then I should be prompted to join or create an organisation
 
-@loggedOn
+@loggedOn and @CreatedOrg
 Scenario: When I create a new organisation from the start page
             I should be redirected to new organisations page
     Given I am not the owner or part of an organisation
     When I create a new organisation
     Then I should be redirected to the new organisations home page
 
-@loggedOn
+@BasicOrg&LoggedOn
 Scenario: When I join an organisation from the start page
             I should be redirected to the MyRota page
     Given I am not the owner or part of an organisation
