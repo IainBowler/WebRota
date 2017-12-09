@@ -1,10 +1,14 @@
-import { CucumberReportExtension } from "./CucumberReportExtension"
+import { CucumberReportExtension } from './CucumberReportExtension';
 
-var {defineSupportCode} = require('cucumber');
+const {defineSupportCode} = require('cucumber');
 
 defineSupportCode( ({ registerListener }) => {
 
-    var ext = new CucumberReportExtension();
+    const ext = new CucumberReportExtension();
     registerListener(ext.JsonFormatter);
 
+});
+
+defineSupportCode(function({setDefaultTimeout}) {
+  setDefaultTimeout(20 * 1000);
 });
